@@ -1,0 +1,236 @@
+[
+    {
+        "id": "reddit-fantasy-2021",
+        "name": "/r/Fantasy bingo 2021",
+        "description": "See this link for details: https://www.reddit.com/r/Fantasy/comments/mhz2tt/official_rfantasy_2021_book_bingo_challenge/",
+        "squares": [
+            [
+                {
+                    "title": "Five SFF Short Stories",
+                    "description": "Any short story as long as there are five of them."
+                },
+                {
+                    "title": "Set in Asia",
+                    "description": "Any book set in Asia or an analogous fantasy setting that is based on a real-world Asian setting."
+                },
+                {
+                    "title": "A Selection from the r/Fantasy A to Z Genre Guide",
+                    "description": "Any book listed in our A to Z Genre Guide."
+                },
+                {
+                    "title": "Found Family",
+                    "description": "Or as TV Tropes calls it - Family of Choice. Often not biologically related, these relationships in a group typically form through bonds of shared experiences and become as important (in some cases more) as family members."
+                },
+                {
+                    "title": "First Person POV",
+                    "description": "Defined as: a literary style in which the narrative is told from the perspective of a narrator speaking directly about themselves."
+                }
+            ],
+            [
+                {
+                    "title": "Book Club OR Readalong Book",
+                    "description": "Any past or still active r/Fantasy book clubs count, as well as past or current r/Fantasy readalongs. NOTE: All of the current book club info can also be found on our Goodreads page. Every book added to our Goodreads shelf counts."
+                },
+                {
+                    "title": "New to You Author",
+                    "description": "This would be an author whose work you've yet to read, meaning no novel, no novella, no short fiction, etc."
+                },
+                {
+                    "title": "Gothic Fantasy",
+                    "description": "Gothic Fantasy is similar to Gothic Fiction but it includes fantasy elements or settings. Gothic Fiction is \"a style of writing that is characterized by elements of fear, horror, death, and gloom, as well as romantic elements, such as nature, individuality, and very high emotion. These emotions can include fear and suspense.\" (Source: https://study.com/academy/lesson/gothic-fiction-definition-characteristics-authors.html)"
+                },
+                {
+                    "title": "Backlist Book",
+                    "description": "For our purposes we're considering 'backlist' an author's older titles that are not their latest published book or part of a currently running series (no further sequels announced when you read it). The author must also be a currently publishing author."
+                },
+                {
+                    "title": "Revenge-Seeking Character",
+                    "description": "Book has a character whose main motivation in the story is revenge."
+                }
+            ],
+            [
+                {
+                    "title": "Mystery Plot",
+                    "description": "The main plot of the book centers around solving a mystery."
+                },
+                {
+                    "title": "Comfort Read",
+                    "description": "This is one of those 'personal to you' squares. Any book that brings you comfort while reading it. You can use a reread on this square and it WON'T count for your '1 reread'."
+                },
+                {
+                    "title": "Published in 2021",
+                    "description": "A book published for the first time in 2021 (no reprints or new editions)."
+                },
+                {
+                    "title": "Cat Squasher: 500+ Pages",
+                    "description": "Time to go tome hunting--find a book that is over 500 pages in length."
+                },
+                {
+                    "title": "SFF-Related Nonfiction",
+                    "description": "Back by popular demand! Any nonfiction book that is related to SFF. Could be a book about the history of something in SFF, writing SFF, essays from a SFF writer, etc."
+                }
+            ],
+            [
+                {
+                    "title": "Latinx or Latin American Author",
+                    "description": "Author is from Latin America or of Latinx/Hispanic heritage."
+                },
+                {
+                    "title": "Self-Published",
+                    "description": "Only self-published novels will count for this square. If the novel has been picked up by a publisher as long as you read it when it was self-pubbed it will still count."
+                },
+                {
+                    "title": "Forest Setting",
+                    "description": " This setting must be used be for a good portion of the book."
+                },
+                {
+                    "title": "Genre Mashup",
+                    "description": "A book that utilizes major elements from two or more genres. Examples: a romance set in a fantasy world, a book that combines science fiction and fantasy, etc."
+                },
+                {
+                    "title": "Has Chapter Titles",
+                    "description": "A book where each chapter has a title (other than numbers or just a character's name)."
+                }
+            ],
+            [
+                {
+                    "title": "Title: _____ of _____",
+                    "description": " The title of the book must feature the format X of Y. Example: The Harp of Kings by Juliet Marillier."
+                },
+                {
+                    "title": "First Contact",
+                    "description": "From Wikipedia: Science Fiction about the first meeting between humans and extraterrestrial life, or of any sentient species' first encounter with another one, given they are from different planets or natural satellites."
+                },
+                {
+                    "title": "Trans or Nonbinary Character",
+                    "description": "A book featuring a trans or nonbinary character that isn't an alien or a robot."
+                },
+                {
+                    "title": "Debut Author",
+                    "description": "An author's debut novel or novella. HARD MODE: The author has participated in an AMA."
+                },
+                {
+                    "title": "Witches",
+                    "description": "A book featuring witches. Note - characters practicing what is traditionally in their culture referred to as witchcraft would also count. For example brujos or brujas would count for this square."
+                }
+            ]
+        ]
+    },
+    {
+        "id": "reddit-fantasy-2021-hard",
+        "name": "/r/Fantasy bingo 2021 - hard mode",
+        "description": "Extends the /r/Fantasy 2021 bingo with extra restrictions. See this link for details: https://www.reddit.com/r/Fantasy/comments/mhz2tt/official_rfantasy_2021_book_bingo_challenge/",
+        "squares": [
+            [
+                {
+                    "title": "Five SFF Short Stories",
+                    "description": "Any short story as long as there are five of them. Read an entire SFF anthology or collection."
+                },
+                {
+                    "title": "Set in Asia",
+                    "description": "Any book set in Asia or an analogous fantasy setting that is based on a real-world Asian setting. Written by an Asian author."
+                },
+                {
+                    "title": "A Selection from the r/Fantasy A to Z Genre Guide",
+                    "description": "Any book listed in our A to Z Genre Guide. HARD MODE: A book by a BIPOC author."
+                },
+                {
+                    "title": "Found Family",
+                    "description": "Or as TV Tropes calls it - Family of Choice. Often not biologically related, these relationships in a group typically form through bonds of shared experiences and become as important (in some cases more) as family members. HARD MODE: Featuring an LGBTQ+ character as a member of the found family."
+                },
+                {
+                    "title": "First Person POV",
+                    "description": "Defined as: a literary style in which the narrative is told from the perspective of a narrator speaking directly about themselves. HARD MODE: There is more than one perspective, but each perspective is written in First Person."
+                }
+            ],
+            [
+                {
+                    "title": "Book Club OR Readalong Book",
+                    "description": "Any past or still active r/Fantasy book clubs count, as well as past or current r/Fantasy readalongs. NOTE: All of the current book club info can also be found on our Goodreads page. Every book added to our Goodreads shelf counts. HARD MODE: Must read a current selection of either a book club or readalong and participate in the discussion."
+                },
+                {
+                    "title": "New to You Author",
+                    "description": "This would be an author whose work you've yet to read, meaning no novel, no novella, no short fiction, etc. HARD MODE: Not only have you never read their work before but you've not heard much about this author or their work before deciding to try a book by them."
+                },
+                {
+                    "title": "Gothic Fantasy",
+                    "description": "Gothic Fantasy is similar to Gothic Fiction but it includes fantasy elements or settings. Gothic Fiction is \"a style of writing that is characterized by elements of fear, horror, death, and gloom, as well as romantic elements, such as nature, individuality, and very high emotion. These emotions can include fear and suspense.\" (Source: https://study.com/academy/lesson/gothic-fiction-definition-characteristics-authors.html). Here is a good 'introductory post' on Gothic Fantasy for further reading from Book Riot: https://bookriot.com/gothic-fantasy/ . HARD MODE: NOT one of the ten titles listed in the Book Riot article."
+                },
+                {
+                    "title": "Backlist Book",
+                    "description": "For our purposes we're considering 'backlist' an author's older titles that are not their latest published book or part of a currently running series (no further sequels announced when you read it). The author must also be a currently publishing author. HARD MODE: Published before the year 2000."
+                },
+                {
+                    "title": "Revenge-Seeking Character",
+                    "description": "Book has a character whose main motivation in the story is revenge. HARD MODE: Revenge is central to the plot of the entire book."
+                }
+            ],
+            [
+                {
+                    "title": "Mystery Plot",
+                    "description": "The main plot of the book centers around solving a mystery. HARD MODE: Not a primary world Urban Fantasy (secondary world urban fantasy is okay!)"
+                },
+                {
+                    "title": "Comfort Read",
+                    "description": "This is one of those 'personal to you' squares. Any book that brings you comfort while reading it. You can use a reread on this square and it WON'T count for your '1 reread'. HARD MODE: Don't use a reread, find a brand new comfort read!"
+                },
+                {
+                    "title": "Published in 2021",
+                    "description": "A book published for the first time in 2021 (no reprints or new editions). HARD MODE: It's also a debut novel--as in it's the author's first published novel."
+                },
+                {
+                    "title": "Cat Squasher: 500+ Pages",
+                    "description": "Time to go tome hunting--find a book that is over 500 pages in length. HARD MODE: Lion Squasher - a book that is over 800 pages."
+                },
+                {
+                    "title": "SFF-Related Nonfiction",
+                    "description": "Back by popular demand! Any nonfiction book that is related to SFF. Could be a book about the history of something in SFF, writing SFF, essays from a SFF writer, etc. HARD MODE: Published within the last five years."
+                }
+            ],
+            [
+                {
+                    "title": "Latinx or Latin American Author",
+                    "description": "Author is from Latin America or of Latinx/Hispanic heritage. HARD MODE: Book has fewer than 1000 Goodreads ratings."
+                },
+                {
+                    "title": "Self-Published",
+                    "description": "Only self-published novels will count for this square. If the novel has been picked up by a publisher as long as you read it when it was self-pubbed it will still count. HARD MODE: Self-pubbed and has fewer than 50 ratings on Goodreads."
+                },
+                {
+                    "title": "Forest Setting",
+                    "description": "This setting must be used be for a good portion of the book. HARD MODE: The entire book takes place in this setting."
+                },
+                {
+                    "title": "Genre Mashup",
+                    "description": "A book that utilizes major elements from two or more genres. Examples: a romance set in a fantasy world, a book that combines science fiction and fantasy, etc. HARD MODE: Three or more genres are combined."
+                },
+                {
+                    "title": "Has Chapter Titles",
+                    "description": "A book where each chapter has a title (other than numbers or just a character's name). HARD MODE: Chapter title is more than a single word FOR EVERY SINGLE CHAPTER"
+                }
+            ],
+            [
+                {
+                    "title": "Title: _____ of _____",
+                    "description": "The title of the book must feature the format X of Y. Example: The Harp of Kings by Juliet Marillier. HARD MODE: _____ of ______ and ________. Format of title must be X of Y and Z."
+                },
+                {
+                    "title": "First Contact",
+                    "description": "From Wikipedia: Science Fiction about the first meeting between humans and extraterrestrial life, or of any sentient species' first encounter with another one, given they are from different planets or natural satellites. HARD MODE: War does not break out as a result of contact."
+                },
+                {
+                    "title": "Trans or Nonbinary Character",
+                    "description": "A book featuring a trans or nonbinary character that isn't an alien or a robot. HARD MODE: This character is a main protagonist."
+                },
+                {
+                    "title": "Debut Author",
+                    "description": "An author's debut novel or novella. HARD MODE: The author has participated in an AMA."
+                },
+                {
+                    "title": "Witches",
+                    "description": "A book featuring witches. Note - characters practicing what is traditionally in their culture referred to as witchcraft would also count. For example brujos or brujas would count for this square. HARD MODE: A witch is a main protagonist."
+                }
+            ]
+        ]
+    }
+]
