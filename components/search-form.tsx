@@ -26,5 +26,8 @@ export default function SearchForm(): ReactElement {
 
 function Result(result: SearchResultBook): ReactElement {
     // TODO: result.id is not as expected
-    return <p key={result.id}><i>{result.title}</i> by {result.author}</p>;
+    return <div key={result.id}>
+        <img src={result.imageUrl} alt={`cover for ${result.title}`}/>
+        <p><i>{result.title}</i> by {result.author}</p>
+    </div>;
 }
