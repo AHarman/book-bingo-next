@@ -1,10 +1,11 @@
 import { Key, ReactElement } from "react";
-import { Card, Square } from "models/card";
+import { Card as CardModel, Square } from "models/card";
 import styles from "styles/card-grid.module.scss";
-import Link from "next/link";
+import { Card, CardContent, Button, Typography } from "@mui/material";
+import { NextLinkComposed } from "./link";
 
 interface CardGridProps {
-    card: Card;
+    card: CardModel;
     getPath: (row: number, col: number) => string;
 }
 
@@ -15,9 +16,11 @@ export default function UserCardGrid({ card, getPath }: CardGridProps): ReactEle
 }
 
 function CardSquare(square: Square, linkPath: string, key: Key): ReactElement {
-    return <div className={styles.square} key={key}>
-        <h3>{ square.title }</h3>
-        <p>{ square.description }</p>
-        <Link href={linkPath}>Select book</Link>
-    </div>;
+    return <Card key={key}>
+        <CardContent>
+            <Typography variant="h3">{ square.title }</Typography>
+            <Typography variant="body1">{ square.description }</Typography>
+            <Button to={linkPath} component={NextLinkComposed}>Select book</Button>
+        </CardContent>
+    </Card>;
 }

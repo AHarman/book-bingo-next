@@ -1,9 +1,10 @@
 import { makeRequest, baseUrl } from "./shared";
 
 interface GoodreadsSearch {
-    "results-start": number;
-    "results-end": number;
-    "total-results": number;
+    // For some reason these fields don't have "type='integer'" set so we can't auto-convert
+    "results-start": string;
+    "results-end": string;
+    "total-results": string;
     results: {
         work: GoodreadsSearchWork[];
     };
@@ -25,9 +26,10 @@ interface GoodreadsSearchBook {
 interface GoodreadsSearchWork {
     id: string;
     best_book: GoodreadsSearchBook;
-    original_publication_year: number;
-    original_publication_month: number;
-    original_publication_day: number;
+    // For some reason these fields don't have "type='integer'" set so we can't auto-convert
+    original_publication_year: string;
+    original_publication_month: string;
+    original_publication_day: string;
 }
 
 interface GoodreadsSearchResponse {
@@ -56,19 +58,19 @@ export interface SearchResultBook {
 function convertToSearchResult(response: GoodreadsSearchResponse, page: number): SearchResult {
     return {
         currentPage: page,
-        resultsStart: response.search["results-start"],
-        resultsEnd: response.search["results-end"],
-        totalResults: response.search["total-results"],
-        results: response.search.results.work.map(result => ({
+        resultsStart: Number.parseInt(response.search["results-start"]),
+        resultsEnd: Number.parseInt(response.search["results-end"]),
+        totalResults: Number.parseInt(response.search["total-results"]),
+        results: response.search.results.work?.map(result => ({
             id: result.id,
             title: result.best_book.title,
             author: result.best_book.author.name,
             imageUrl: result.best_book.image_url,
             smallImageUrl: result.best_book.small_image_url,
-            publicationDay: result.original_publication_day,
-            publicationMonth: result.original_publication_month,
-            publicationYear: result.original_publication_year,
-        }))
+            publicationDay: Number.parseInt(result.original_publication_day),
+            publicationMonth: Number.parseInt(result.original_publication_month),
+            publicationYear: Number.parseInt(result.original_publication_year),
+        })) ?? []
     };
 }
 

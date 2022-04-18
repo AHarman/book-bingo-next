@@ -4,14 +4,20 @@ import { throwError } from "helpers/helpers";
 import cards from "cards.json";
 import { Card, Square } from "models/card";
 import { ParsedUrlQuery } from "querystring";
+import { Typography } from "@mui/material";
+import BookSearchResults from "components/search-results";
+import { useState } from "react";
 
 const SelectBook: NextPage<PageProps> = ({ card, square }) => {
+    const [query, setQuery] = useState("");
+
     return <>
-        <h2>{card.name}</h2>
-        <h3>{square.title}</h3>
-        <p>{square.description}</p>
-        <h4>Search for a book!</h4>
-        <SearchForm></SearchForm>
+        <Typography variant="h2">{card.name}</Typography>
+        <Typography variant="h3">{square.title}</Typography>
+        <Typography>{square.description}</Typography>
+        <Typography variant="h4">Search for a book!</Typography>
+        <SearchForm onSubmit={setQuery}/>
+        <BookSearchResults queryText={query}/>
     </>;
 };
 
@@ -30,7 +36,7 @@ export const getStaticProps: GetStaticProps<PageProps, UrlParams & ParsedUrlQuer
     const cardId = context.params?.cardSlug as string;
     const row = Number.parseInt(context.params?.rowIndex as string);
     const col = Number.parseInt(context.params?.colIndex as string);
-    const card = cards.find(it => it.id == cardId) ?? throwError(`Unable to find card with id ${cardId}`);
+    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
     const square = card.squares[row][col];
     return Promise.resolve({ props: { card, square } });
 };

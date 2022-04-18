@@ -1,9 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import Link from "next/link";
 import cards from "cards.json";
 import CardGrid from "components/card-grid";
 import { throwError } from "helpers/helpers";
 import { Card } from "models/card";
+import { Button, Typography } from "@mui/material";
+import { NextLinkComposed } from "components/link";
 
 interface BingoCardProps {
     card: Card;
@@ -11,9 +12,9 @@ interface BingoCardProps {
 
 const BingoCard: NextPage<BingoCardProps> = ({ card }) => {
     return <>
-        <h2>{card?.name}</h2>
-        <p>{card?.description}</p>
-        <Link href={`${card.id}/create`}>Fill in your card here!</Link>
+        <Typography variant="h2">{card?.name}</Typography>
+        <Typography variant="body1">{card?.description}</Typography>
+        <Button component={NextLinkComposed} to={`${card.id}/create`}>Fill in your card here!</Button>
         <CardGrid card={card} />
     </>;
 };

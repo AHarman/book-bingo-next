@@ -1,33 +1,24 @@
+import { Button, Input, InputLabel } from "@mui/material";
 import React, { FormEvent, ReactElement, useState } from "react";
-import { SearchResult, SearchResultBook } from "services/goodreads/search";
 
-export default function SearchForm(): ReactElement {
+interface SearchFormProps {
+    onSubmit: (query: string) => void;
+}
+
+export default function SearchForm({ onSubmit }: SearchFormProps): ReactElement {
+    const [searchText, setSearchText] = useState("");
+
     function handleSubmit(e: FormEvent<HTMLFormElement>): void {
         e.preventDefault();
-        fetch(`/api/search?query=${searchText}`)
-            .then(response => response.json())
-            .then(result => setResults(result as SearchResult))
-            .catch(console.error);
+        onSubmit(searchText);
     }
 
-    const [searchText, setSearchText] = useState("");
-    const [results, setResults] = useState<SearchResult | undefined>(undefined);
-
-    return <>
-        <form onSubmit={handleSubmit}>
-            <label>
-                Enter search term:
-                <input type="text" name="searchText" value={searchText} required onChange={e => setSearchText(e.target.value)}></input>
-            </label>
-        </form>
-        { results?.results.map(Result) }
-    </>;
+    return <form onSubmit={handleSubmit}>
+        <InputLabel>
+            Enter search term:
+            <Input type="text" name="searchText" value={searchText} required onChange={e => setSearchText(e.target.value)} />
+            <Button type="submit">Search</Button>
+        </InputLabel>
+    </form>;
 }
 
-function Result(result: SearchResultBook): ReactElement {
-    // TODO: result.id is not as expected
-    return <div key={result.id}>
-        <img src={result.imageUrl} alt={`cover for ${result.title}`}/>
-        <p><i>{result.title}</i> by {result.author}</p>
-    </div>;
-}

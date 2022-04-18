@@ -4,6 +4,7 @@ import { Card } from "models/card";
 import cards from "cards.json";
 import UserCardGrid from "components/user-card-grid";
 import { useRouter } from "next/router";
+import { Typography } from "@mui/material";
 
 interface FilledCardProps {
     card: Card;
@@ -12,7 +13,7 @@ interface FilledCardProps {
 const FilledBingoCard: NextPage<FilledCardProps> = ({ card }) => {
     const router = useRouter();
     return <>
-        <h2>{card?.name}</h2>
+        <Typography variant="h2">{card?.name}</Typography>
         <UserCardGrid card={card} getPath={(row, col) => `${router.asPath}/select-book/${row}/${col}`}/>
     </>;
 };

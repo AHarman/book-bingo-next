@@ -1,9 +1,10 @@
 import { Key, ReactElement } from "react";
-import { Card, Square } from "models/card";
+import { Card as CardModel, Square } from "models/card";
 import styles from "styles/card-grid.module.scss";
+import { Card, CardContent, Typography } from "@mui/material";
 
 interface CardGridProps {
-    card: Card;
+    card: CardModel;
 }
 
 export default function CardGrid({ card }: CardGridProps): ReactElement {
@@ -13,8 +14,10 @@ export default function CardGrid({ card }: CardGridProps): ReactElement {
 }
 
 function CardSquare(square: Square, key: Key): ReactElement {
-    return <div className={styles.square} key={key}>
-        <h3>{ square.title }</h3>
-        <p>{ square.description }</p>
-    </div>;
+    return <Card key={key}>
+        <CardContent>
+            <Typography variant="h3">{ square.title }</Typography>
+            <Typography variant="body1">{ square.description }</Typography>
+        </CardContent>
+    </Card>;
 }
