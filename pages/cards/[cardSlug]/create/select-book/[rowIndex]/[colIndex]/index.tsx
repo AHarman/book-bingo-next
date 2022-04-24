@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import SearchForm from "components/search-form";
+import SearchForm from "components/create-card/book-search/search-form";
 import { throwError } from "helpers/helpers";
 import cards from "cards.json";
 import { Card, Square } from "models/card";
 import { ParsedUrlQuery } from "querystring";
 import { Typography } from "@mui/material";
-import BookSearchResults from "components/search-results";
+import BookSearchResults from "components/create-card/book-search/search-results";
 import { useState } from "react";
 
 const SelectBook: NextPage<PageProps> = ({ card, square }) => {

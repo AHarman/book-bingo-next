@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { throwError } from "helpers/helpers";
 import { Card } from "models/card";
 import cards from "cards.json";
-import UserCardGrid from "components/user-card-grid";
+import UserCardGrid from "components/create-card/user-card-grid";
 import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
 

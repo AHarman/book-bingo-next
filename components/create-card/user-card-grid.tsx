@@ -2,7 +2,7 @@ import { Key, ReactElement } from "react";
 import { Card as CardModel, Square } from "models/card";
 import styles from "styles/card-grid.module.scss";
 import { Card, CardContent, Button, Typography } from "@mui/material";
-import { NextLinkComposed } from "./link";
+import { NextLinkComposed } from "../link";
 
 interface CardGridProps {
     card: CardModel;
