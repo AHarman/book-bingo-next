@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemButton, ListItemText, Pagination, Skeleton, Typography } from "@mui/material";
 import { Key, ReactElement, useEffect, useState } from "react";
 import { SearchResult, SearchResultBook } from "services/goodreads/search";
-
+import styles from "styles/search-results.module.scss";
 
 export default function BookSearchResults({ queryText }: { queryText: string }): ReactElement {
     const [page, setPage] = useState(1);
@@ -54,8 +54,8 @@ function ResultsFooter({ results, page, setPage }: ResultsFooterProps): ReactEle
 
 function Result(result: SearchResultBook): ReactElement {
     return <ListItemButton key={result.id}>
-        <img src={result.imageUrl} alt={`cover for ${result.title}`} />
-        <ListItemText><i>{result.title}</i> by {result.author}</ListItemText>
+        <img src={result.imageUrl} alt={`cover for ${result.title}`} className={styles.resultImg}/>
+        <ListItemText sx={{ ml: 1 }}><i>{result.title}</i> by {result.author}</ListItemText>
     </ListItemButton>;
 }
 
