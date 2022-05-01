@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import cards from "cards.json";
 import { Card } from "models/card";
 import { ReactElement } from "react";
-import { useRouter } from "next/router";
 import { NextLinkComposed } from "components/link";
 
 const Home: NextPage = () => {
