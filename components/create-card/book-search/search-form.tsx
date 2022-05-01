@@ -1,4 +1,5 @@
 import { Button, Input, InputLabel } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import React, { FormEvent, ReactElement, useState } from "react";
 
 interface SearchFormProps {
@@ -16,8 +17,8 @@ export default function SearchForm({ onSubmit }: SearchFormProps): ReactElement 
     return <form onSubmit={handleSubmit}>
         <InputLabel>
             Enter search term:
-            <Input type="text" name="searchText" value={searchText} required onChange={e => setSearchText(e.target.value)} />
-            <Button type="submit">Search</Button>
+            <Input type="text" name="searchText" value={searchText} required onChange={e => setSearchText(e.target.value)} sx={{ ml: 1, mr: 1 }}/>
+            <Button type="submit" endIcon={<SearchIcon />} variant="contained">Search</Button>
         </InputLabel>
     </form>;
 }

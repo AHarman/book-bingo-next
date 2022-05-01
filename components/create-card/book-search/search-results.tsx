@@ -1,9 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import { List, ListItem, ListItemButton, ListItemText, Pagination, Skeleton, Typography } from "@mui/material";
 import { Key, ReactElement, useEffect, useState } from "react";
 import { SearchResult, SearchResultBook } from "services/goodreads/search";
 import styles from "styles/search-results.module.scss";
 
-export default function BookSearchResults({ queryText }: { queryText: string }): ReactElement {
+interface BookSearchResultsProps {
+    queryText: string;
+    onBookSelected: (book: SearchResultBook) => void;
+}
+
+export default function BookSearchResults({ queryText, onBookSelected }: BookSearchResultsProps): ReactElement {
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(null as (SearchResult | null));
     const [isPending, setIsPending] = useState(false);
@@ -28,7 +34,7 @@ export default function BookSearchResults({ queryText }: { queryText: string }):
 
     const items = isPending ?
         Array.from({ length: 20 }, (_, i) => ResultSkeleton(i)) :
-        results?.results.map(Result);
+        results?.results.map(book => <Result key={book.id} book={book} onBookSelected={onBookSelected} />);
 
     return <>
         <List> { items } </List>
@@ -52,10 +58,15 @@ function ResultsFooter({ results, page, setPage }: ResultsFooterProps): ReactEle
     </>;
 }
 
-function Result(result: SearchResultBook): ReactElement {
-    return <ListItemButton key={result.id}>
-        <img src={result.imageUrl} alt={`cover for ${result.title}`} className={styles.resultImg}/>
-        <ListItemText sx={{ ml: 1 }}><i>{result.title}</i> by {result.author}</ListItemText>
+interface ResultProps {
+    book: SearchResultBook;
+    onBookSelected: (book: SearchResultBook) => void;
+}
+
+function Result({ book, onBookSelected }: ResultProps): ReactElement {
+    return <ListItemButton key={book.id} onClick={() => onBookSelected(book)}>
+        <img src={book.imageUrl} alt={`cover for ${book.title}`} className={styles.resultImg}/>
+        <ListItemText sx={{ ml: 1 }}><i>{book.title}</i> by {book.author}</ListItemText>
     </ListItemButton>;
 }
 

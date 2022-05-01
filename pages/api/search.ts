@@ -5,7 +5,7 @@ import { SearchResult } from "services/goodreads/search";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<SearchResult>): Promise<void> {
-  if (req.method != "GET") {
+  if (req.method !== "GET") {
     res.status(405);
   }
 

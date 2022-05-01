@@ -2,24 +2,44 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import SearchForm from "components/create-card/book-search/search-form";
 import { throwError } from "helpers/helpers";
 import cards from "cards.json";
-import { Card, Square } from "models/card";
+import { Book, Card, Square } from "models/card";
 import { ParsedUrlQuery } from "querystring";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
 import BookSearchResults from "components/create-card/book-search/search-results";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
+import { useSquareBookStore } from "hooks/useCardStore";
 
-const SelectBook: NextPage<PageProps> = ({ card, square }) => {
+const SelectBook: NextPage<PageProps> = ({ card, square, row, column }) => {
     const [query, setQuery] = useState("");
+    const [book, setBook] = useSquareBookStore(card.id, row, column);
 
     return <>
         <Typography variant="h2">{card.name}</Typography>
         <Typography variant="h3">{square.title}</Typography>
         <Typography>{square.description}</Typography>
+        { book ? <CurrentBook book={book} returnUrl={`/cards/${card.id}/create`}/> : <></> }
         <Typography variant="h4">Search for a book!</Typography>
         <SearchForm onSubmit={setQuery}/>
-        <BookSearchResults queryText={query}/>
+        <BookSearchResults queryText={query} onBookSelected={setBook}/>
     </>;
 };
+
+interface CurrentBookProps {
+    book: Book;
+    returnUrl: string;
+}
+
+function CurrentBook({ book, returnUrl }: CurrentBookProps): ReactElement {
+    return <>
+        <Typography variant="h4">Current selection:</Typography>
+        { /* eslint-disable-next-line @next/next/no-img-element */ }
+        <img src={book.imageUrl} alt={`Cover image for ${book.imageUrl}`}/>
+        <Typography>{book.title}</Typography>
+        <Typography variant="body2">by <em>{book.author}</em></Typography>
+        <Button startIcon={<CheckIcon/>} href={returnUrl}>Confirm</Button>
+    </>;
+}
 
 interface UrlParams {
     cardSlug: string;
@@ -30,15 +50,17 @@ interface UrlParams {
 interface PageProps {
     card: Card;
     square: Square;
+    row: number;
+    column: number;
 }
 
 export const getStaticProps: GetStaticProps<PageProps, UrlParams & ParsedUrlQuery> = (context) => {
     const cardId = context.params?.cardSlug as string;
     const row = Number.parseInt(context.params?.rowIndex as string);
-    const col = Number.parseInt(context.params?.colIndex as string);
+    const column = Number.parseInt(context.params?.colIndex as string);
     const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
-    const square = card.squares[row][col];
-    return Promise.resolve({ props: { card, square } });
+    const square = card.squares[row][column];
+    return Promise.resolve({ props: { card, square, row, column } });
 };
 
 export const getStaticPaths: GetStaticPaths = () => {

@@ -12,15 +12,16 @@ interface FilledCardProps {
 
 const FilledBingoCard: NextPage<FilledCardProps> = ({ card }) => {
     const router = useRouter();
+
     return <>
         <Typography variant="h2">{card?.name}</Typography>
-        <UserCardGrid card={card} getPath={(row, col) => `${router.asPath}/select-book/${row}/${col}`}/>
+        <UserCardGrid cardId={card.id} getPath={(row, col) => `${router.asPath}/select-book/${row}/${col}`}/>
     </>;
 };
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
-    const card = cards.find(it => it.id == cardId) ?? throwError(`Unable to find card with id ${cardId}`);
+    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
     return Promise.resolve({ props: { card } });
 };
 

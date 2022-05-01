@@ -18,6 +18,7 @@
     "semi": "warn",
     "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
     "@typescript-eslint/member-delimiter-style": ["warn"],
+    "@typescript-eslint/no-unused-vars": ["warn", { "destructuredArrayIgnorePattern": "^_" }],
     "eqeqeq": [ "error", "smart" ]
   }
 }

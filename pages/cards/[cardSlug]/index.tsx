@@ -21,7 +21,7 @@ const BingoCard: NextPage<BingoCardProps> = ({ card }) => {
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
-    const card = cards.find(it => it.id == cardId) ?? throwError(`Unable to find card with id ${cardId}`);
+    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
     return Promise.resolve({ props: { card } });
 };
 
