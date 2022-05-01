@@ -37,8 +37,8 @@ function CardSquare({ square, linkPath, book }: CardSquareProps): ReactElement {
     const buttonText = book ? "Change selection" : "Select book";
     return <Card>
         <CardContent>
-            <Typography variant="h3">{ square.title }</Typography>
-            <Typography variant="h4">{book?.title}</Typography>
+            <Typography variant="h5" component="h3">{ square.title }</Typography>
+            <Typography variant="h6" component="h4">{book?.title}</Typography>
             { book ?
                 <img src={book.imageUrl} alt={`Cover image for ${book.title}`}/> :
                 <Typography variant="body1">{ square.description }</Typography>

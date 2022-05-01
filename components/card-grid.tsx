@@ -16,7 +16,7 @@ export default function CardGrid({ card }: CardGridProps): ReactElement {
 function CardSquare(square: Square, key: Key): ReactElement {
     return <Card key={key}>
         <CardContent>
-            <Typography variant="h3">{ square.title }</Typography>
+            <Typography variant="h5" component="h3">{ square.title }</Typography>
             <Typography variant="body1">{ square.description }</Typography>
         </CardContent>
     </Card>;

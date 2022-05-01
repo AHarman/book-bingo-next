@@ -9,6 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import BookSearchResults from "components/create-card/book-search/search-results";
 import { ReactElement, useState } from "react";
 import { useSquareBookStore } from "hooks/useCardStore";
+import { NextLinkComposed } from "components/link";
 
 const SelectBook: NextPage<PageProps> = ({ card, square, row, column }) => {
     const [query, setQuery] = useState("");
@@ -37,7 +38,7 @@ function CurrentBook({ book, returnUrl }: CurrentBookProps): ReactElement {
         <img src={book.imageUrl} alt={`Cover image for ${book.imageUrl}`}/>
         <Typography>{book.title}</Typography>
         <Typography variant="body2">by <em>{book.author}</em></Typography>
-        <Button startIcon={<CheckIcon/>} href={returnUrl}>Confirm</Button>
+        <Button startIcon={<CheckIcon/>} to={returnUrl} component={NextLinkComposed}>Confirm</Button>
     </>;
 }
 
