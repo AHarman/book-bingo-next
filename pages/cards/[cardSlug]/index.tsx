@@ -5,6 +5,7 @@ import { throwError } from "helpers/helpers";
 import { Card } from "models/card";
 import { Button, Typography } from "@mui/material";
 import { NextLinkComposed } from "components/link";
+import BlankCardSquareContent from "components/display-square-info";
 
 interface BingoCardProps {
     card: Card;
@@ -15,7 +16,7 @@ const BingoCard: NextPage<BingoCardProps> = ({ card }) => {
         <Typography variant="h2">{card?.name}</Typography>
         <Typography variant="body1">{card?.description}</Typography>
         <Button component={NextLinkComposed} to={`${card.id}/create`}>Fill in your card here!</Button>
-        <CardGrid card={card} />
+        <CardGrid card={card} component={BlankCardSquareContent} />
     </>;
 };
 

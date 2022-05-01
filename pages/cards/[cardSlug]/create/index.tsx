@@ -1,28 +1,26 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { throwError } from "helpers/helpers";
-import { Card } from "models/card";
 import cards from "cards.json";
-import UserCardGrid from "components/create-card/user-card-grid";
-import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
+import CardGrid from "components/card-grid";
+import UserCardSquareContent from "components/editable-card-square-content";
+import { useCardStore } from "hooks/useCardStore";
 
 interface FilledCardProps {
-    card: Card;
+    cardId: string;
 }
 
-const FilledBingoCard: NextPage<FilledCardProps> = ({ card }) => {
-    const router = useRouter();
+const FilledBingoCard: NextPage<FilledCardProps> = ({ cardId }) => {
+    const [ card ] = useCardStore(cardId);
 
     return <>
         <Typography variant="h2">{card?.name}</Typography>
-        <UserCardGrid cardId={card.id} getPath={(row, col) => `${router.asPath}/select-book/${row}/${col}`}/>
+        <CardGrid card={card} component={UserCardSquareContent}/>
     </>;
 };
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
-    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
-    return Promise.resolve({ props: { card } });
+    return Promise.resolve({ props: { cardId } });
 };
 
 export const getStaticPaths: GetStaticPaths = () => ({

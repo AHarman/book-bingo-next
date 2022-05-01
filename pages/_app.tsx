@@ -6,7 +6,7 @@ import { Container, Typography } from "@mui/material";
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
 
-  return <Container>
+  return <Container sx={{pb: 3}}>
     <Head>
       <meta name="viewport" content="initial-scale=1, width=device-width" />
     </Head>

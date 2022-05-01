@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import SearchForm from "components/create-card/book-search/search-form";
+import SearchForm from "components/book-search/search-form";
 import { throwError } from "helpers/helpers";
 import cards from "cards.json";
 import { Book, Card, Square } from "models/card";
 import { ParsedUrlQuery } from "querystring";
 import { Button, Typography } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
-import BookSearchResults from "components/create-card/book-search/search-results";
+import BookSearchResults from "components/book-search/search-results";
 import { ReactElement, useState } from "react";
 import { useSquareBookStore } from "hooks/useCardStore";
 import { NextLinkComposed } from "components/link";

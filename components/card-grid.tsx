@@ -1,23 +1,37 @@
-import { Key, ReactElement } from "react";
+import { ComponentType, ReactElement, ReactNode } from "react";
 import { Card as CardModel, Square } from "models/card";
-import styles from "styles/card-grid.module.scss";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Grid } from "@mui/material";
 
-interface CardGridProps {
-    card: CardModel;
+export interface SquareContentsProps<S extends Square = Square> {
+    square: S;
+    rowIndex: number;
+    columnIndex: number;
 }
 
-export default function CardGrid({ card }: CardGridProps): ReactElement {
-    return <div className={styles.grid}>
-        { card.squares.map((row, rowIndex) => row.map((square, colIndex) => CardSquare(square, rowIndex * row.length + colIndex))) }
-    </div>;
+interface CardGridProps<S extends Square = Square, C extends CardModel<S> = CardModel<S>> {
+    card: C;
+    component: ComponentType<SquareContentsProps>;
 }
 
-function CardSquare(square: Square, key: Key): ReactElement {
-    return <Card key={key}>
-        <CardContent>
-            <Typography variant="h5" component="h3">{ square.title }</Typography>
-            <Typography variant="body1">{ square.description }</Typography>
-        </CardContent>
-    </Card>;
+export default function CardGrid({ card, component: Component }: CardGridProps): ReactElement {
+    const rowLength = card.squares[0].length;
+    const squares = card.squares.flatMap((row, rowIndex) => row.map((square, colIndex) =>
+        <CardSquare key={rowIndex * row.length + colIndex}>
+            <Component square={square} rowIndex={rowIndex} columnIndex={colIndex} />
+        </CardSquare>
+    ));
+
+    return <Grid container alignItems="stretch" spacing={2} columns={{xs: 1, md: rowLength}}>
+        { squares }
+    </Grid>;
+}
+
+function CardSquare({ children }: { children: ReactNode }): ReactElement {
+    return <Grid item xs={1}>
+        <Card sx={{ height: "100%"}}>
+            <CardContent>
+                { children }
+            </CardContent>
+        </Card>
+    </Grid>;
 }
