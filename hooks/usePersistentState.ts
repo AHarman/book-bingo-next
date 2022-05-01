@@ -8,7 +8,7 @@ export function usePersistentState<S>(stateName: string, initialState: S | (() =
         const storedState = storedStateString ? JSON.parse(storedStateString) as S : undefined;
         if (storedState)
             setNonPersistentState(storedState);
-    }, []);
+    }, [stateName]);
 
     function setPersistentState(action: SetStateAction<S>): void {
         const newState = applyAction(action, state);
