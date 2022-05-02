@@ -22,3 +22,5 @@ export interface UserSquare extends Square {
 }
 
 export type UserCard = Card<UserSquare>;
+
+export type UserCardChoices = (Book | undefined)[][];

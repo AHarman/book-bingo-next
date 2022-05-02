@@ -28,8 +28,8 @@ export default function CardGrid({ card, component: Component }: CardGridProps):
 
 function CardSquare({ children }: { children: ReactNode }): ReactElement {
     return <Grid item xs={1}>
-        <Card sx={{ height: "100%"}}>
-            <CardContent>
+        <Card sx={{ height: "100%" }}>
+            <CardContent sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 { children }
             </CardContent>
         </Card>

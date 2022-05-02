@@ -1,22 +1,31 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import cards from "cards.json";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import CardGrid from "components/card-grid";
-import UserCardSquareContent from "components/editable-card-square-content";
 import { useCardStore } from "hooks/useCardStore";
+import { NextLinkComposed } from "components/link";
+import ShareIcon from '@mui/icons-material/Share';
+import EditableUserCardSquareContent from "components/card-squares/editable-card-square-content copy";
+import { UserCard } from "models/card";
 
-interface FilledCardProps {
+interface EditableBingoCardPageProps {
     cardId: string;
 }
 
-const FilledBingoCard: NextPage<FilledCardProps> = ({ cardId }) => {
+const EditableBingoCardPage: NextPage<EditableBingoCardPageProps> = ({ cardId }) => {
     const [ card ] = useCardStore(cardId);
 
     return <>
         <Typography variant="h2">{card?.name}</Typography>
-        <CardGrid card={card} component={UserCardSquareContent}/>
+        <CardGrid card={card} component={EditableUserCardSquareContent}/>
+        <Button variant="contained" component={NextLinkComposed} to={GetUri(card)} endIcon={<ShareIcon/>}>Share</Button>
     </>;
 };
+
+function GetUri(card: UserCard): string {
+    const data = card.squares.map(row => row.map(square => square.book));
+    return `/share/${card.id}?squares=${encodeURIComponent(JSON.stringify(data))}`;
+}
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
@@ -28,4 +37,4 @@ export const getStaticPaths: GetStaticPaths = () => ({
     fallback: false
 });
 
-export default FilledBingoCard;
+export default EditableBingoCardPage;

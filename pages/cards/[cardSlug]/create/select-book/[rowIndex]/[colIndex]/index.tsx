@@ -11,7 +11,7 @@ import { ReactElement, useState } from "react";
 import { useSquareBookStore } from "hooks/useCardStore";
 import { NextLinkComposed } from "components/link";
 
-const SelectBook: NextPage<PageProps> = ({ card, square, row, column }) => {
+const SelectBookPage: NextPage<PageProps> = ({ card, square, row, column }) => {
     const [query, setQuery] = useState("");
     const [book, setBook] = useSquareBookStore(card.id, row, column);
 
@@ -82,4 +82,4 @@ export const getStaticPaths: GetStaticPaths = () => {
     };
 };
 
-export default SelectBook;
+export default SelectBookPage;
