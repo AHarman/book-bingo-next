@@ -1,3 +1,4 @@
+import { isArray } from "util";
 import { makeRequest, baseUrl } from "./shared";
 
 interface GoodreadsSearch {
@@ -6,7 +7,7 @@ interface GoodreadsSearch {
     "results-end": string;
     "total-results": string;
     results: {
-        work: GoodreadsSearchWork[];
+        work?: GoodreadsSearchWork[] | GoodreadsSearchWork;
     };
 }
 
@@ -55,22 +56,35 @@ export interface SearchResultBook {
     smallImageUrl: string;
 }
 
+function convertWorkToBook(work: GoodreadsSearchWork): SearchResultBook {
+    return {
+        id: work.id,
+        title: work.best_book.title,
+        author: work.best_book.author.name,
+        imageUrl: work.best_book.image_url,
+        smallImageUrl: work.best_book.small_image_url,
+        publicationDay: Number.parseInt(work.original_publication_day),
+        publicationMonth: Number.parseInt(work.original_publication_month),
+        publicationYear: Number.parseInt(work.original_publication_year),
+    };
+}
+
 function convertToSearchResult(response: GoodreadsSearchResponse, page: number): SearchResult {
+    const works = response.search.results.work;
+    let results: SearchResultBook[];
+    if (Array.isArray(works)) {
+        results = works.map(convertWorkToBook);
+    } else if (works) {
+        results = [convertWorkToBook(works)];
+    } else {
+        results = [];
+    }
     return {
         currentPage: page,
         resultsStart: Number.parseInt(response.search["results-start"]),
         resultsEnd: Number.parseInt(response.search["results-end"]),
         totalResults: Number.parseInt(response.search["total-results"]),
-        results: response.search.results.work?.map(result => ({
-            id: result.id,
-            title: result.best_book.title,
-            author: result.best_book.author.name,
-            imageUrl: result.best_book.image_url,
-            smallImageUrl: result.best_book.small_image_url,
-            publicationDay: Number.parseInt(result.original_publication_day),
-            publicationMonth: Number.parseInt(result.original_publication_month),
-            publicationYear: Number.parseInt(result.original_publication_year),
-        })) ?? []
+        results
     };
 }
 
