@@ -1,12 +1,18 @@
 import { ComponentType, ReactElement, ReactNode } from "react";
 import { Card as CardModel, Square } from "models/card";
-import { Card, CardContent, Grid } from "@mui/material";
+import { Card, Grid } from "@mui/material";
 
 export interface SquareContentsProps<S extends Square = Square> {
     square: S;
     rowIndex: number;
     columnIndex: number;
 }
+
+export const defaultSquareContentsStyle = {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column"
+};
 
 interface CardGridProps<S extends Square = Square, C extends CardModel<S> = CardModel<S>> {
     card: C;
@@ -28,9 +34,7 @@ export default function CardGrid({ card, component: Component }: CardGridProps):
 function CardSquare({ children }: { children: ReactNode }): ReactElement {
     return <Grid item xs={1}>
         <Card sx={{ height: "100%" }}>
-            <CardContent sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                { children }
-            </CardContent>
+            { children }
         </Card>
     </Grid>;
 }

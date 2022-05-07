@@ -1,10 +1,12 @@
-import { Typography } from "@mui/material";
+import { CardContent, Typography } from "@mui/material";
 import { ReactElement } from "react";
-import { SquareContentsProps } from "../card-grid";
+import { defaultSquareContentsStyle, SquareContentsProps } from "../card-grid";
 
 export default function BlankCardSquareContent({ square }: SquareContentsProps): ReactElement {
-    return <>
-        <Typography variant="h5" component="h3">{ square.title }</Typography>
-        <Typography variant="body1">{ square.description }</Typography>
-    </>;
+    return (
+        <CardContent sx={defaultSquareContentsStyle}>
+            <Typography variant="h5" component="h3">{ square.title }</Typography>
+            <Typography variant="body1">{ square.description }</Typography>
+        </CardContent>
+    );
 }
