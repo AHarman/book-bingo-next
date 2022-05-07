@@ -1,23 +1,40 @@
-import cards from "cards.json";
-import { throwError } from "helpers/helpers";
-import { Book, UserCard } from "models/card";
+import { getCardDefinition, getUserCard } from "helpers/helpers";
+import { Book, Card, UserCard, UserCardChoices } from "models/card";
 import { Dispatch, SetStateAction } from "react";
 import { applyAction, usePersistentState } from "./usePersistentState";
 
-export function useCardStore(cardId: string): [UserCard, Dispatch<SetStateAction<UserCard>>] {
-    const card = cards.find(card => card.id === cardId) as UserCard ?? throwError(`Unable to find card with ID ${cardId}`);
-    return usePersistentState(`card:${cardId}`, card);
+function getUserChoices(card: UserCard): UserCardChoices {
+    return card.squares.map(rows => rows.map(square => square.book));
 }
 
-export function useSquareBookStore(cardId: string, row: number, column: number): [Book | undefined, Dispatch<SetStateAction<Book | undefined>>] {
-    const [ card, setCard ] = useCardStore(cardId);
-    const square = card.squares[row][column];
+function getInitialChoices(cardId: string): UserCardChoices {
+    const card = getCardDefinition(cardId);
+    return [...Array(card.rows) as never[]].map(() => Array(card.columns).fill(undefined) as undefined[]);
+}
 
-    function setBookState(action: SetStateAction<Book | undefined>): void {
-        const newBook = applyAction(action, square.book);
-        card.squares[row][column].book = newBook;
-        setCard({...card});
+function useUserCardChoicesStore(cardId: string): [UserCardChoices, Dispatch<SetStateAction<UserCardChoices>>] {
+    return usePersistentState(`card:${cardId}`, () => getInitialChoices(cardId));
+}
+
+export function useUserCardStore(card: Card): [UserCard, Dispatch<SetStateAction<UserCard>>] {
+    const [choices, setChoices] = useUserCardChoicesStore(card.id);
+
+    function setUserCard(action: SetStateAction<UserCard>): void {
+        setChoices(getUserChoices(applyAction(action, card)));
     }
 
-    return [square.book, setBookState];
+    return [getUserCard(card, choices), setUserCard];
+}
+
+export function useUserSquareStore(cardId: string, row: number, column: number): [Book | undefined, Dispatch<SetStateAction<Book | undefined>>] {
+    const [ choices, setChoices ] = useUserCardChoicesStore(cardId);
+    const choice = choices[row][column];
+
+    function setBookState(action: SetStateAction<Book | undefined>): void {
+        const newBook = applyAction(action, choice);
+        choices[row][column] = newBook;
+        setChoices([...choices]);
+    }
+
+    return [choice, setBookState];
 }

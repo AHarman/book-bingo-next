@@ -3,6 +3,8 @@
         "id": "reddit-fantasy-2021",
         "name": "/r/Fantasy bingo 2021",
         "description": "See this link for details: https://www.reddit.com/r/Fantasy/comments/mhz2tt/official_rfantasy_2021_book_bingo_challenge/",
+        "rows": 5,
+        "columns": 5,
         "squares": [
             [
                 {
@@ -120,6 +122,8 @@
         "id": "reddit-fantasy-2021-hard",
         "name": "/r/Fantasy bingo 2021 - hard mode",
         "description": "Extends the /r/Fantasy 2021 bingo with extra restrictions. See this link for details: https://www.reddit.com/r/Fantasy/comments/mhz2tt/official_rfantasy_2021_book_bingo_challenge/",
+        "rows": 5,
+        "columns": 5,
         "squares": [
             [
                 {

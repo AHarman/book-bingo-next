@@ -2,6 +2,8 @@ export interface Card<S extends Square = Square> {
     id: string;
     name: string;
     description: string;
+    rows: number;
+    columns: number;
     squares: S[][];
 }
 

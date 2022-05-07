@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import SearchForm from "components/book-search/search-form";
-import { throwError } from "helpers/helpers";
+import { getCardDefinition } from "helpers/helpers";
 import cards from "cards.json";
 import { Book, Card, Square } from "models/card";
 import { ParsedUrlQuery } from "querystring";
@@ -8,12 +8,12 @@ import { Button, Typography } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import BookSearchResults from "components/book-search/search-results";
 import { ReactElement, useState } from "react";
-import { useSquareBookStore } from "hooks/useCardStore";
+import { useUserSquareStore } from "hooks/useCardStore";
 import { NextLinkComposed } from "components/link";
 
 const SelectBookPage: NextPage<PageProps> = ({ card, square, row, column }) => {
     const [query, setQuery] = useState("");
-    const [book, setBook] = useSquareBookStore(card.id, row, column);
+    const [book, setBook] = useUserSquareStore(card.id, row, column);
 
     return <>
         <Typography variant="h2">{card.name}</Typography>
@@ -56,10 +56,9 @@ interface PageProps {
 }
 
 export const getStaticProps: GetStaticProps<PageProps, UrlParams & ParsedUrlQuery> = (context) => {
-    const cardId = context.params?.cardSlug as string;
     const row = Number.parseInt(context.params?.rowIndex as string);
     const column = Number.parseInt(context.params?.colIndex as string);
-    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
+    const card = getCardDefinition(context.params?.cardSlug as string);
     const square = card.squares[row][column];
     return Promise.resolve({ props: { card, square, row, column } });
 };

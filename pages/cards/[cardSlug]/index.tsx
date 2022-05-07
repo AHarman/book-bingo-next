@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import cards from "cards.json";
 import CardGrid from "components/card-grid";
-import { throwError } from "helpers/helpers";
+import { getCardDefinition } from "helpers/helpers";
 import { Card } from "models/card";
 import { Button, Typography } from "@mui/material";
 import { NextLinkComposed } from "components/link";
@@ -22,7 +22,7 @@ const BingoCard: NextPage<BingoCardProps> = ({ card }) => {
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
-    const card = cards.find(it => it.id === cardId) ?? throwError(`Unable to find card with id ${cardId}`);
+    const card = getCardDefinition(cardId);
     return Promise.resolve({ props: { card } });
 };
 

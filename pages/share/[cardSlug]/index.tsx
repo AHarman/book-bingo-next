@@ -2,35 +2,28 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import cards from "cards.json";
 import { Typography } from "@mui/material";
 import CardGrid from "components/card-grid";
-import { useRouter } from "next/router";
-import { UserCard, UserCardChoices } from "models/card";
+import { Card } from "models/card";
 import ShareCardSquareContent from "components/card-squares/share-card-square-content";
-import { throwError } from "helpers/helpers";
+import { getCardDefinition } from "helpers/helpers";
+import { useSharedUserCard } from "hooks/useSharedUserCard";
 
 interface SharedCardPageProps {
-    cardId: string;
+    card: Card;
 }
 
-const SharedBingoCardPage: NextPage<SharedCardPageProps> = ({ cardId }) => {
-    let card: UserCard = cards.find(card => card.id === cardId) ?? throwError("Unable to find card");
-    const router = useRouter();
-    const cardString = router.query["squares"] as string;
-
-    if (cardString) {
-        const userChoices = JSON.parse(cardString) as UserCardChoices;
-        const combinedSquares = card.squares.map((row, rowIndex) => row.map((square, colIndex) => ({...square, book: userChoices[rowIndex][colIndex]})));
-        card = {...card, squares: combinedSquares};
-    }
+const SharedBingoCardPage: NextPage<SharedCardPageProps> = ({ card }) => {
+    const userCard = useSharedUserCard(card);
 
     return <>
-        <Typography variant="h2">{card?.name}</Typography>
-        <CardGrid card={card} component={ShareCardSquareContent}/>
+        <Typography variant="h2">{userCard?.name}</Typography>
+        <CardGrid card={userCard} component={ShareCardSquareContent}/>
     </>;
 };
 
 export const getStaticProps: GetStaticProps = (context) => {
     const cardId = context.params?.["cardSlug"] as string;
-    return Promise.resolve({ props: { cardId } });
+    const card = getCardDefinition(cardId);
+    return Promise.resolve({ props: { card } });
 };
 
 export const getStaticPaths: GetStaticPaths = () => ({
