@@ -1,6 +1,6 @@
 import { ComponentType, ReactElement, ReactNode } from "react";
 import { Card as CardModel, Square } from "models/card";
-import { Card, Grid } from "@mui/material";
+import { Card, Grid, SxProps, Theme } from "@mui/material";
 
 export interface SquareContentsProps<S extends Square = Square> {
     square: S;
@@ -8,7 +8,7 @@ export interface SquareContentsProps<S extends Square = Square> {
     columnIndex: number;
 }
 
-export const defaultSquareContentsStyle = {
+export const defaultSquareContentsStyle: SxProps<Theme> = {
     height: "100%",
     display: "flex",
     flexDirection: "column"

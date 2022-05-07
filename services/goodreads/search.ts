@@ -1,4 +1,3 @@
-import { isArray } from "util";
 import { makeRequest, baseUrl } from "./shared";
 
 interface GoodreadsSearch {
