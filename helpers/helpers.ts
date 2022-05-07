@@ -13,3 +13,6 @@ export function getUserCard(card: Card, choices: UserCardChoices): UserCard {
     return {...card, squares: combinedSquares};
 }
 
+export function getUserChoices(card: UserCard): UserCardChoices {
+    return card.squares.map(rows => rows.map(square => square.book));
+}

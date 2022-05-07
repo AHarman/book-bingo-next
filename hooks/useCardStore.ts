@@ -1,11 +1,7 @@
-import { getCardDefinition, getUserCard } from "helpers/helpers";
+import { getCardDefinition, getUserCard, getUserChoices } from "helpers/helpers";
 import { Book, Card, UserCard, UserCardChoices } from "models/card";
 import { Dispatch, SetStateAction } from "react";
 import { applyAction, usePersistentState } from "./usePersistentState";
-
-function getUserChoices(card: UserCard): UserCardChoices {
-    return card.squares.map(rows => rows.map(square => square.book));
-}
 
 function getInitialChoices(cardId: string): UserCardChoices {
     const card = getCardDefinition(cardId);

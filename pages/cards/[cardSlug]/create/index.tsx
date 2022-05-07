@@ -7,7 +7,7 @@ import { NextLinkComposed } from "components/link";
 import ShareIcon from '@mui/icons-material/Share';
 import EditableUserCardSquareContent from "components/card-squares/editable-card-square-content copy";
 import { Card, UserCard } from "models/card";
-import { getCardDefinition } from "helpers/helpers";
+import { getCardDefinition, getUserChoices } from "helpers/helpers";
 
 interface EditableBingoCardPageProps {
     card: Card;
@@ -24,7 +24,7 @@ const EditableBingoCardPage: NextPage<EditableBingoCardPageProps> = ({ card }) =
 };
 
 function GetUri(card: UserCard): string {
-    const data = card.squares.map(row => row.map(square => square.book));
+    const data = getUserChoices(card);
     return `/share/${card.id}?squares=${encodeURIComponent(JSON.stringify(data))}`;
 }
 
