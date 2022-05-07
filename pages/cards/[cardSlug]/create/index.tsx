@@ -18,8 +18,8 @@ const EditableBingoCardPage: NextPage<EditableBingoCardPageProps> = ({ card }) =
 
     return <>
         <Typography variant="h2">{userCard?.name}</Typography>
+        <Button sx={{ mt: 2, mb:2 }} variant="contained" component={NextLinkComposed} to={GetUri(userCard)} endIcon={<ShareIcon/>}>Share your card</Button>
         <CardGrid card={userCard} component={EditableUserCardSquareContent}/>
-        <Button variant="contained" component={NextLinkComposed} to={GetUri(userCard)} endIcon={<ShareIcon/>}>Share</Button>
     </>;
 };
 

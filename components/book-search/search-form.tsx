@@ -18,7 +18,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps): ReactElement 
         <InputLabel>
             Enter search term:
             <Input type="text" name="searchText" value={searchText} required onChange={e => setSearchText(e.target.value)} sx={{ ml: 1, mr: 1 }}/>
-            <Button type="submit" endIcon={<SearchIcon />} variant="contained">Search</Button>
+            <Button type="submit" endIcon={<SearchIcon />}>Search</Button>
         </InputLabel>
     </form>;
 }

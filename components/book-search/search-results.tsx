@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { List, ListItem, ListItemButton, ListItemText, Pagination, Skeleton, Typography } from "@mui/material";
-import { Key, ReactElement, useEffect, useState } from "react";
+import { Key, ReactElement, useEffect, useRef, useState } from "react";
 import { SearchResult, SearchResultBook } from "services/goodreads/search";
 import styles from "styles/search-results.module.scss";
 
@@ -13,6 +13,12 @@ export default function BookSearchResults({ queryText, onBookSelected }: BookSea
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(null as (SearchResult | null));
     const [isPending, setIsPending] = useState(false);
+    const resultsRef = useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (resultsRef.current && !isPending && results)
+            resultsRef.current.scrollIntoView();
+    }, [resultsRef, isPending, results]);
 
     useEffect(() => {
         async function makeSearch(searchText: string, resultsPage: number): Promise<void> {
@@ -37,8 +43,8 @@ export default function BookSearchResults({ queryText, onBookSelected }: BookSea
         results?.results.map(book => <Result key={book.id} book={book} onBookSelected={onBookSelected} />);
 
     return <>
-        <List> { items } </List>
-        {results &&  <ResultsFooter page={page} results={results} setPage={setPage}/>}
+        <List ref={resultsRef}> { items } </List>
+        {results && <ResultsFooter page={page} results={results} setPage={setPage}/>}
     </>;
 }
 
@@ -51,10 +57,13 @@ interface ResultsFooterProps {
 function ResultsFooter({ results, page, setPage }: ResultsFooterProps): ReactElement {
     return <>
         <Typography variant="body2">{getResultCountText(results)}</Typography>
-        <Pagination
-            count={Math.ceil(results.totalResults / results.results.length) || 0}
-            page={page}
-            onChange={(_: unknown, page: number) => setPage(page)} />
+        {
+            results.totalResults > 0 &&
+            <Pagination
+                count={Math.ceil(results.totalResults / results.results.length) || 0}
+                page={page}
+                onChange={(_: unknown, page: number) => setPage(page)} />
+        }
     </>;
 }
 
